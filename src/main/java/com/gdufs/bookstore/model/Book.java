@@ -7,4 +7,15 @@ import lombok.Data;
  */
 @Data
 public class Book {
+
+    private long bookid;
+    private String bookname;
+    private String category;
+    private String country;
+    private String author;
+    private String pic;
+    private Integer sale;
+    private String price;
+    private String introduce;
+
 }
