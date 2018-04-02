@@ -18,7 +18,10 @@ public interface BookMapper {
     void add(Book book);
 
     @Select(value = "select * from book where bookname like #{str} or author like #{str}")
-    Book selectByBknameOrAuthor(String str);
+    List<Book> selectByBknameOrAuthor(String str);
+
+    @Select(value = "select * from book where bookid=#{bookid}")
+    Book selectByBkid(long bookid);
 
     @Select(value = "select * from book")
     List<Book> listAll();

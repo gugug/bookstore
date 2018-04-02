@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by gu on 2018/4/2.
  */
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ShippingAddressMapper {
     @Select(value = "select * from shipping_address where userid=#{userid}")
-    ShippingAddress selectByUid(long userid);
+    List<ShippingAddress> selectByUid(long userid);
 
     @Insert(value = "insert into shipping_address(userid,name,tel,address) " +
             "values (#{userid}, #{name}, #{tel},#{address})")

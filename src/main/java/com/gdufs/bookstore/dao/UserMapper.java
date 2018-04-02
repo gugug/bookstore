@@ -17,7 +17,7 @@ public interface UserMapper {
     void add(User user);
 
     @Select(value = "select * from user where username=#{username}")
-    User selectByUname(long username);
+    User selectByUname(String username);
 
     @Select(value = "select * from user where userid=#{userid}")
     User selectByUid(long userid);
