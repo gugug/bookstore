@@ -17,5 +17,6 @@ public class Book {
     private Integer sale;
     private String price;
     private String introduce;
+    private int num;
 
 }

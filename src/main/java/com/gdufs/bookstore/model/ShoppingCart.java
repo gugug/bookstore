@@ -7,6 +7,7 @@ import lombok.Data;
  */
 @Data
 public class ShoppingCart {
+    private long cartid;
     private long userid;
     private long bookid;
     private int num;
