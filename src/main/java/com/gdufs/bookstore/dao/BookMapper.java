@@ -27,7 +27,7 @@ public interface BookMapper {
     void deletebyBkid(long bookid);
 
     @Update(value = "update book set bookname=#{bookname},category=#{category},country=#{country}," +
-            "author=#{author},pic=#{pic},price=#{price}, introduce=#{introduce} where userid=#{userid}")
-    void updateByBkid(Book book);
+            "author=#{author},pic=#{pic},price=#{price}, introduce=#{introduce} where bookid=#{bookid}")
+    void update(Book book);
 
 }
