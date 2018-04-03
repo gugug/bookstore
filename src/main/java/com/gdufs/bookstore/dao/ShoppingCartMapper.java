@@ -1,7 +1,9 @@
 package com.gdufs.bookstore.dao;
 
 import com.gdufs.bookstore.model.Book;
+import com.gdufs.bookstore.model.ShoppingCart;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -20,5 +22,11 @@ public interface ShoppingCartMapper {
 
     @Delete(value = "delete from shopping_cart where cartid=#{cartid}")
     void deleteByCartid(long cartid);
+
+    @Insert(value = "insert into shopping_cart(userid,bookid,num) values (#{userid}, #{bookid}, #{num})")
+    void addtoCart(ShoppingCart shoppingCart);
+
+    @Insert(value = "replace into shopping_cart(cartid,userid,bookid,num) values (#{cartid},#{userid}, #{bookid}, #{num})")
+    void addnum(ShoppingCart shoppingCart);
 
 }
