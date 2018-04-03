@@ -18,6 +18,6 @@ public interface CommentMapper {
     @Select(value = "select * from comment where bookid=#{bookid}")
     List<Comment> selectByBkid(long bookid);
 
-    @Insert(value = "replace into comment(userid,bookid,comments) values (#{userid},#{bookid},#{comments})")
+    @Insert(value = "insert into comment(userid,bookid,comments) values (#{userid},#{bookid},#{comments})")
     void add(Comment comment);
 }

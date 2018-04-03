@@ -1,6 +1,6 @@
 package com.gdufs.bookstore.dao;
 
-import com.gdufs.bookstore.model.Book;
+import com.gdufs.bookstore.model.OrdersCustom;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -14,11 +14,11 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    @Select(value = "select bk.*,cart.num from book bk left join order ord " +
-            "on bk.bookid = ord.bookid where userid=#{userid}")
-    List<Book> selectOrderByUid(long userid);
+    @Select(value = " select bk.*,ords.orderid,ords.orderTime,ords.shippingState,ords.num " +
+            "from book bk left join orders ords on bk.bookid = ords.bookid where userid=#{userid}")
+    List<OrdersCustom> selectOrdersByUid(long userid);
 
-    @Select(value = "select bk.*,cart.num from book bk left join order ord " +
-            "on bk.bookid = ord.bookid where cartid=#{Oid}")
-    List<Book> selectOrderByOid(long Oid);
+    @Select(value = "select bk.*,ords.orderid,ords.orderTime,ords.shippingState,ords.num " +
+            "from book bk left join orders ords on bk.bookid = ords.bookid where orderid=#{orderid}")
+    List<OrdersCustom> selectOrderByOid(long orderid);
 }

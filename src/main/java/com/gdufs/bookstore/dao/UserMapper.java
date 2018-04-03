@@ -22,8 +22,8 @@ public interface UserMapper {
     @Select(value = "select * from user where userid=#{userid}")
     User selectByUid(long userid);
 
-    @Select(value = "select * from user where userid=#{userid} and password=#{password}")
-    User selectByUidAndPwd(long userid, String password);
+    @Select(value = "select * from user where username=#{username} and password=#{password}")
+    User selectByUnameAndPwd(@Param("username")String username, @Param("password")String password);
 
     @Delete(value = "delete from user where userid=#{userid}")
     void deleteByUid(long userid);

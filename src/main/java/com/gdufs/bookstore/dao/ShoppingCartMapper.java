@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ShoppingCartMapper {
-    @Select(value = "select bk.*,cart.num from book bk left join shopping_cart cart " +
+    @Select(value = "select bk.*,cart.cartid,cart.num from book bk left join shopping_cart cart " +
             "on bk.bookid = cart.bookid where userid=#{userid}")
     List<Book> selectCartByUid(long userid);
 
