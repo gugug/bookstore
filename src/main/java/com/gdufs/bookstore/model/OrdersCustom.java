@@ -3,12 +3,10 @@ package com.gdufs.bookstore.model;
 import lombok.Data;
 
 /**
- * Created by gu on 2018/4/2.
+ * Created by gu on 2018/4/3.
  */
 @Data
-public class Book {
-
-    private long bookid;
+public class OrdersCustom extends Order {
     private String bookname;
     private String category;
     private String country;
@@ -17,6 +15,6 @@ public class Book {
     private Integer sale;
     private String price;
     private String introduce;
-    private int num;
-    private long cartid;
+
 }
+

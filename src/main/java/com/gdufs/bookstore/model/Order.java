@@ -12,4 +12,5 @@ public class Order {
     private long bookid;
     private java.sql.Timestamp ordertime;
     private int shippingState;
+    private int num;
 }
