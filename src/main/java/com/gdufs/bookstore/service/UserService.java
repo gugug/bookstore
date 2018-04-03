@@ -14,11 +14,11 @@ public interface UserService {
     /**
      * 1.用户登录验证帐号密码
      *
-     * @param userid
+     * @param username
      * @param password
      * @return
      */
-    Boolean login(long userid, String password);
+    User login(String username, String password);
 
     /**
      * 2.用户注册验证用户名是否存在
@@ -50,5 +50,7 @@ public interface UserService {
      * @return
      */
     User selectByUname(String username);
+
+    User selectByUid(long userid);
 
 }

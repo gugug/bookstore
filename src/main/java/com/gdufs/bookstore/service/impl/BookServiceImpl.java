@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectByBknameOrAuthor(String str) {
-        str = "'%" + str + "%'";
+        str = "%" + str + "%";
         return bookMapper.selectByBknameOrAuthor(str);
     }
 

@@ -24,7 +24,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void deleteByCartid(long cartid) {
-
+        shoppingCartMapper.deleteByCartid(cartid);
     }
 
 }

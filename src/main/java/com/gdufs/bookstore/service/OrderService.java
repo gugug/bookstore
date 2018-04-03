@@ -1,6 +1,6 @@
 package com.gdufs.bookstore.service;
 
-import com.gdufs.bookstore.model.Book;
+import com.gdufs.bookstore.model.OrdersCustom;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,13 +16,13 @@ public interface OrderService {
      * @param userid
      * @return
      */
-    List<Book> selectOrderByUid(long userid);
+    List<OrdersCustom> selectOrdersByUid(long userid);
 
     /**
      * 16.根据订单号获取订单
      *
-     * @param oid
+     * @param orderid
      * @return
      */
-    List<Book> selectOrderByOid(long oid);
+    List<OrdersCustom> selectOrderByOid(long orderid);
 }

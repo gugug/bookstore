@@ -18,9 +18,8 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public Boolean login(long userid, String password) {
-        User user = userMapper.selectByUidAndPwd(userid, password);
-        return user != null;
+    public User login(String username, String password) {
+        return userMapper.selectByUnameAndPwd(username, password);
     }
 
     @Override
@@ -42,5 +41,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectByUname(String username) {
         return userMapper.selectByUname(username);
+    }
+
+    @Override
+    public User selectByUid(long userid) {
+        return userMapper.selectByUid(userid);
     }
 }
