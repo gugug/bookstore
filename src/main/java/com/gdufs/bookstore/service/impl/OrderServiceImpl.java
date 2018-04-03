@@ -2,6 +2,7 @@ package com.gdufs.bookstore.service.impl;
 
 import com.gdufs.bookstore.dao.OrderMapper;
 import com.gdufs.bookstore.model.OrdersCustom;
+import com.gdufs.bookstore.model.ShoppingCart;
 import com.gdufs.bookstore.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,10 @@ public class OrderServiceImpl implements OrderService {
     public List<OrdersCustom> selectOrderByOid(long orderid) {
         return orderMapper.selectOrderByOid(orderid);
     }
+
+    @Override
+    public void add(ShoppingCart shoppingCart) {
+        orderMapper.add(shoppingCart);
+    }
+
 }

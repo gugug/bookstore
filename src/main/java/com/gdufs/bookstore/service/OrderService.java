@@ -1,6 +1,7 @@
 package com.gdufs.bookstore.service;
 
 import com.gdufs.bookstore.model.OrdersCustom;
+import com.gdufs.bookstore.model.ShoppingCart;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +26,11 @@ public interface OrderService {
      * @return
      */
     List<OrdersCustom> selectOrderByOid(long orderid);
+
+    /**
+     * 20.下单
+     *
+     * @param shoppingCart
+     */
+    void add(ShoppingCart shoppingCart);
 }

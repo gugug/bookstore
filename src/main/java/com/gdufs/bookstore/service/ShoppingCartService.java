@@ -1,6 +1,7 @@
 package com.gdufs.bookstore.service;
 
 import com.gdufs.bookstore.model.Book;
+import com.gdufs.bookstore.model.ShoppingCart;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,5 +26,19 @@ public interface ShoppingCartService {
      * @param cartid
      */
     void deleteByCartid(long cartid);
+
+    /**
+     * 18.添加购物车
+     *
+     * @param shoppingCart
+     */
+    void addtoCart(ShoppingCart shoppingCart);
+
+    /**
+     * 19.修改购物车数目
+     * @param shoppingCart
+     */
+    void addnum(ShoppingCart shoppingCart);
+
 
 }

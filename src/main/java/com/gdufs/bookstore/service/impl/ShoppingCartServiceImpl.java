@@ -2,6 +2,7 @@ package com.gdufs.bookstore.service.impl;
 
 import com.gdufs.bookstore.dao.ShoppingCartMapper;
 import com.gdufs.bookstore.model.Book;
+import com.gdufs.bookstore.model.ShoppingCart;
 import com.gdufs.bookstore.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public void deleteByCartid(long cartid) {
         shoppingCartMapper.deleteByCartid(cartid);
+    }
+
+    @Override
+    public void addtoCart(ShoppingCart shoppingCart) {
+        shoppingCartMapper.addtoCart(shoppingCart);
+    }
+
+    @Override
+    public void addnum(ShoppingCart shoppingCart) {
+        shoppingCartMapper.addnum(shoppingCart);
     }
 
 }
