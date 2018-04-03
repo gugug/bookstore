@@ -10,6 +10,7 @@ public class User {
 
     private long userid;
     private String username;
+    private String alias;
     private String password;
     private String email;
     private String tel;
