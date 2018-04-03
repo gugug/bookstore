@@ -1,6 +1,7 @@
 package com.gdufs.bookstore.web.controller;
 
 import com.gdufs.bookstore.model.Book;
+import com.gdufs.bookstore.model.ShoppingCart;
 import com.gdufs.bookstore.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,4 +50,31 @@ public class ShoppingCartController {
         }
         return result;
     }
+
+    @RequestMapping(value = "addtoCart", method = RequestMethod.POST)
+    public Map<String, Object> addtoCart(ShoppingCart shoppingCart) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            shoppingCartService.addtoCart(shoppingCart);
+            result.put("state", 200);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "addnum", method = RequestMethod.POST)
+    public Map<String, Object> addnum(ShoppingCart shoppingCart) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            shoppingCartService.addnum(shoppingCart);
+            result.put("state", 200);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
 }

@@ -1,10 +1,13 @@
 package com.gdufs.bookstore.web.controller;
 
 import com.gdufs.bookstore.model.OrdersCustom;
+import com.gdufs.bookstore.model.ShoppingCart;
 import com.gdufs.bookstore.service.OrderService;
+import com.gdufs.bookstore.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +26,8 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+    @Autowired
+    ShoppingCartService shoppingCartService;
 
     @RequestMapping(value = "list", method = RequestMethod.POST)
     public Map<String, Object> list(long userid) {
@@ -45,6 +50,22 @@ public class OrderController {
             List<OrdersCustom> books = orderService.selectOrderByOid(orderid);
             result.put("state", 200);
             result.put("data", books);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
+    @Transactional
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public Map<String, Object> add(ShoppingCart shoppingCart) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            orderService.add(shoppingCart);
+            shoppingCartService.deleteByCartid(shoppingCart.getCartid());
+            result.put("state", 200);
+            LOG.info("{} cartid order successful", shoppingCart.getCartid());
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             result.put("state", 500);
