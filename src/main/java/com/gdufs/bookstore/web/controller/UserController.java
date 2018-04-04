@@ -106,4 +106,17 @@ public class UserController {
         return result;
     }
 
+    @RequestMapping(value = "cgpwd", method = RequestMethod.POST)
+    public Map<String, Object> cgpwd(long userid, String password) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            userService.changepwd(userid, password);
+            result.put("state", 200);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
 }

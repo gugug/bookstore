@@ -3,6 +3,10 @@ package com.gdufs.bookstore.service.impl;
 import com.gdufs.bookstore.dao.UserMapper;
 import com.gdufs.bookstore.model.User;
 import com.gdufs.bookstore.service.UserService;
+import com.gdufs.bookstore.util.aes.AESUtil;
+import com.gdufs.bookstore.util.constant.AESConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,11 +18,18 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Resource
     UserMapper userMapper;
 
     @Override
     public User login(String username, String password) {
+        try {
+            password = AESUtil.Encrypt(password, AESConstant.cKey);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+        }
         return userMapper.selectByUnameAndPwd(username, password);
     }
 
@@ -30,7 +41,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(User user) {
-        userMapper.add(user);
+        String password = user.getPassword();
+        try {
+            String enString = AESUtil.Encrypt(password, AESConstant.cKey);
+            user.setPassword(enString);
+            userMapper.add(user);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -46,5 +64,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectByUid(long userid) {
         return userMapper.selectByUid(userid);
+    }
+
+    @Override
+    public void changepwd(long userid, String password) {
+        try {
+            password = AESUtil.Encrypt(password, AESConstant.cKey);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+        }
+        userMapper.changepwd(userid, password);
     }
 }
