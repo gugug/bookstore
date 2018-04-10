@@ -11,5 +11,5 @@ public class ShoppingCart {
     private long userid;
     private long bookid;
     private int num;
-    private int orderState;
+    private int shippingState;
 }

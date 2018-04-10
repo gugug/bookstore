@@ -1,5 +1,6 @@
 package com.gdufs.bookstore.web.controller;
 
+import com.gdufs.bookstore.model.Order;
 import com.gdufs.bookstore.model.OrdersCustom;
 import com.gdufs.bookstore.model.ShoppingCart;
 import com.gdufs.bookstore.service.OrderService;
@@ -66,6 +67,33 @@ public class OrderController {
             shoppingCartService.deleteByCartid(shoppingCart.getCartid());
             result.put("state", 200);
             LOG.info("{} cartid order successful", shoppingCart.getCartid());
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "updateState", method = RequestMethod.POST)
+    public Map<String, Object> updateState(Order order) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            orderService.updateState(order);
+            result.put("state", 200);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "listAll", method = RequestMethod.GET)
+    public Map<String, Object> listAll() {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            List<OrdersCustom> ordersCustoms = orderService.listAll();
+            result.put("state", 200);
+            result.put("data", ordersCustoms);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             result.put("state", 500);
