@@ -28,7 +28,10 @@ public interface UserMapper {
     @Delete(value = "delete from user where userid=#{userid}")
     void deleteByUid(long userid);
 
-    @Update(value = "update user set username=#{username}, where userid=#{userid}")
+    @Update(value = "update user set password=#{password} where userid=#{userid}")
+    void changepwd(@Param("userid") long userid, @Param("password") String password);
+
+    @Update(value = "update user set username=#{username} where userid=#{userid}")
     void updateByUid(User user);
 
     @Select(value = "select * from user")

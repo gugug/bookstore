@@ -1,6 +1,7 @@
 package com.gdufs.bookstore.service.impl;
 
 import com.gdufs.bookstore.dao.OrderMapper;
+import com.gdufs.bookstore.model.Order;
 import com.gdufs.bookstore.model.OrdersCustom;
 import com.gdufs.bookstore.model.ShoppingCart;
 import com.gdufs.bookstore.service.OrderService;
@@ -30,6 +31,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void add(ShoppingCart shoppingCart) {
         orderMapper.add(shoppingCart);
+    }
+
+    @Override
+    public void updateState(Order order) {
+        orderMapper.updateState(order);
+    }
+
+    @Override
+    public List<OrdersCustom> listAll() {
+        return orderMapper.listAll();
     }
 
 }

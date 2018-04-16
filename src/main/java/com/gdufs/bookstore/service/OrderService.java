@@ -1,5 +1,6 @@
 package com.gdufs.bookstore.service;
 
+import com.gdufs.bookstore.model.Order;
 import com.gdufs.bookstore.model.OrdersCustom;
 import com.gdufs.bookstore.model.ShoppingCart;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,15 @@ public interface OrderService {
      * @param shoppingCart
      */
     void add(ShoppingCart shoppingCart);
+
+    /**
+     * 更新发货状态
+     * @param order
+     */
+    void updateState(Order order);
+
+    /**
+     * 查詢全部訂單
+     */
+    List<OrdersCustom> listAll();
 }

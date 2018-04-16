@@ -53,4 +53,6 @@ public interface UserService {
 
     User selectByUid(long userid);
 
+    void changepwd(long userid,String password);
+
 }
