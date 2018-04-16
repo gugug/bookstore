@@ -65,4 +65,30 @@ public class BookController {
         }
         return result;
     }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public Map<String, Object> add(Book book) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            bookService.add(book);
+            result.put("state", 200);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public Map<String, Object> remove(long bookid) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            bookService.deletebyBkid(bookid);
+            result.put("state", 200);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            result.put("state", 500);
+        }
+        return result;
+    }
 }
