@@ -32,7 +32,7 @@ public interface OrderMapper {
     @Update(value = "update orders set shippingState=#{shippingState} where orderid=#{orderid}")
     void updateState(Order order);
 
-    @Select(value = "select bk.*,ords.orderid,ords.orderTime,ords.shippingState,ords.num " +
+    @Select(value = "select bk.*,ords.orderid,ords.userid,ords.orderTime,ords.shippingState,ords.num " +
             "from orders ords left join book bk on bk.bookid = ords.bookid")
     List<OrdersCustom> listAll();
 }
